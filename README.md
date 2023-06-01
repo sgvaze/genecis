@@ -1,7 +1,7 @@
 # GeneCIS
 Project page for the GeneCIS paper and dataset.
 
-Materials: [[Paper]()][[Video]()][[Poster]()]
+Materials: [[Paper]()][[Video](https://www.youtube.com/watch?v=wu3U2iNGIUw&ab_channel=SagarVaze)][[Poster]()]
 
 ![Illustration of tasks in the GeneCIS benchmark](genecis.jpg)
 
