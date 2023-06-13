@@ -1,41 +1,257 @@
-<!DOCTYPE html>
-<html>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./resources/style.css" media="screen"/>
+
+<html lang="en">
 <head>
-    <title>GeneCIS</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- <meta http-equiv="refresh" content="0; URL=https://github.com/facebookresearch/genecis"> -->
+  <title>GeneCIS: A Benchmark for General Conditional Image Similarity</title>
+  <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/
+      if you update and want to force Facebook to re-scrape. -->
+  <meta property="og:image" content=""/>
+  <meta property="og:title" content="GeneCIS: A Benchmark for General Conditional Image Similarity" />
+  <meta property="og:description" content="Training and evaluating models which can adapt to different notions of similarity." />
+  <!-- Twitter automatically scrapes this. Go to https://cards-dev.twitter.com/validator?
+      if you update and want to force Twitter to re-scrape. -->
+  <meta property="twitter:card"          content="summary" />
+  <meta property="twitter:title"         content="GeneCIS: A Benchmark for General Conditional Image Similarity" />
+  <meta property="twitter:description"   content="Training and evaluating models which can adapt to different notions of similarity." />
+  <meta property="twitter:image"         content="resources/genecis.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-97476543-1');
+  </script>
+
 </head>
+
 <body>
-    <header>
-        <h1>GeneCIS</h1>
-        <p>Project page for the GeneCIS paper and dataset (full update coming soon).</p>
-    </header>
-    <main>
-        <section id="materials">
-            <h2>Materials</h2>
-            <ul>
-                <li><a href="paper.pdf">Paper</a></li>
-                <li><a href="https://github.com/facebookresearch/genecis">Code</a></li>
-                <li><a href="https://www.youtube.com/watch?v=wu3U2iNGIUw&ab_channel=SagarVaze">Video</a></li>
-                <li><a href="https://www.youtube.com/watch?v=z1fETC868E4&ab_channel=SagarVaze">(One Minute Intro)</a></li>
-                <li><a href="poster.pdf">Poster</a></li>
-            </ul>
-        </section>
-        <section id="illustration">
-            <h2>Illustration of GeneCIS tasks</h2>
-            <img src="genecis.jpg" alt="Illustration of tasks in the GeneCIS benchmark">
-        </section>
-        <section id="citation">
-            <h2>Citation</h2>
-                <div class="bibtex">
-                    <pre>@inproceedings{vaze2023gen,
-                        title={GeneCIS: A Benchmark for General Conditional Image Similarity},
-                        author={Sagar Vaze and Nicolas Carion and Ishan Misra},
-                        booktitle={CVPR},
-                        year={2023}
-                        }</pre>
-                </div>
-        </section>
-    </main>
+<div class="container">
+  <div class="title">
+    GeneCIS: <br>
+    A Benchmark for General Conditional Image Similarity
+
+  </div>
+
+  <div class="venue">
+    In CVPR 2023
+  </div>
+
+  <br><br>
+
+  <div class="author">
+    <a href="https://sgvaze.github.io/">Sagar Vaze</a><sup>1</sup>
+  </div>
+  <div class="author">
+    <a href="https://www.nicolascarion.com/">Nicolas Carion</a><sup>2</sup>
+  </div>
+  <div class="author">
+    <a href="https://imisra.github.io/">Ishan Misra</a><sup>2</sup>
+  </div>
+  <br><br>
+
+  <div class="affiliation"><sup>1&nbsp;</sup>VGG, University of Oxford</div>
+  <div class="affiliation"><sup>2&nbsp;</sup>FAIR, Meta AI</div>
+
+  <br><br>
+
+  <div class="links">[<a href="">ArXiv</a> / <a href="./resources/paper.pdf">PDF</a>]</div>
+  <div class="links"><a href="https://github.com/facebookresearch/genecis">       [Code]</a></div>
+  <div class="links" style="max-width: 270px;"><a href="./resources/poster.pdf">[Poster]</a></div>
+
+  <br><br>
+
+  <!-- <img style="width: 100%;" src="resources/teaser_fig.jpg" alt="Teaser figure."/> -->
+ <h1>Video</h1>
+ <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/z1fETC868E4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+ </div>
+  <br>
+
+  <br><br>
+  <hr style="width: 81%; margin: auto">
+  <br>
+  <center><h1>Abstract</h1></center>
+  <div style="width: 82%;" align="justify">
+    We argue that there are many notions of ‘similarity’ and
+    that models, like humans, should be able to adapt to these
+    dynamically. This contrasts with most representation learning methods, supervised or self-supervised, which learn a
+    fixed embedding function and hence implicitly assume a single notion of similarity. For instance, models trained on ImageNet are biased towards object categories, while a user
+    might prefer the model to focus on colors, textures or specific elements in the scene. In this paper, we propose the
+    GeneCIS (‘genesis’) benchmark, which measures models’
+    ability to adapt to a range of similarity conditions. Extending prior work, our benchmark is designed for zeroshot evaluation only, and hence considers an open-set of
+    similarity conditions. We find that baselines from powerful
+    CLIP models struggle on GeneCIS and that performance on
+    the benchmark is only weakly correlated with ImageNet accuracy, suggesting that simply scaling existing methods is
+    not fruitful. We further propose a simple, scalable solution
+    based on automatically mining information from existing
+    image-caption datasets. We find our method offers a substantial boost over the baselines on GeneCIS, and further
+    improves zero-shot performance on related image retrieval
+    benchmarks. In fact, though evaluated zero-shot, our model
+    surpasses state-of-the-art supervised models on MIT-States.
+  </div>
+
+  <br><br><br>
+<!--  <hr>-->
+
+
+
+<!--  <br><br>-->
+  <hr style="width: 81%; margin: auto">
+
+  <br>
+<!--  <h1>Method Overview</h1>-->
+<!--  <div align="justify">-->
+<!--    We find that stronger closed-set classifiers tend to be better open-set detectors.-->
+<!--    I.e classifiers which have a higher accuracy between 'seen' classes are better at detecting whether a test image-->
+<!--    comes from an 'unseen' class.-->
+<!--    We adjust the baseline to use the 'maximum logit score' (MLS) rather than the 'maximum softmax probability' (MSP)-->
+<!--    as our open-set indicator.-->
+<!--  </div>-->
+<!--  <br><br>-->
+<!--  <div align="justify">-->
+<!--    The video below suggests why this is the case by looking at a classifier's feature space as it trains.-->
+<!--    Stronger classifiers, later in training, map 'seen' class examples (in colours) further from the origin, while ensuring that-->
+<!--    'unseen' classes (in black) remain mapped near the origin.-->
+<!--  </div>-->
+<!--  <br><br>-->
+<!--  <div class="video-container-custom">-->
+<!--    <iframe src="./resources/feat_space_animation.mp4" frameBorder="0"-->
+<!--            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"-->
+<!--            allowfullscreen></iframe>-->
+<!--  </div>-->
+
+<!--  <br>-->
+
+<!--  <br><br>-->
+<!--  <hr>-->
+
+<!--  <h1>Results</h1>-->
+
+<!--  <div align="justify">-->
+<!--    <b>-->
+<!--    We find our strong MLS baseline performs as well as recent SoTA open-set recognition methods.-->
+<!--    Our simple baseline can also be competetive with, or outperform, SoTA methods from out-of-distribution detection-->
+<!--    (a related sub-field to open-set recognition).-->
+<!--    </b>-->
+<!--  </div>-->
+<!--  <br><br>-->
+<!--  <div align="justify">-->
+<!--    Open-set recognition results on TinyImageNet and CIFAR10 are shown below. ARPL + CS is a SoTA open-set recogition method-->
+<!--    (<i>Adversarial Reciprocal Points Learning for Open Set Recognition, Chen et al., TPAMI '21</i>).-->
+<!--  </div>-->
+<!--  <br><br>-->
+<!--  <img style="width: 100%;" src="./resources/results.jpg"-->
+<!--       alt="Results figure"/>-->
+
+  <!-- <br> -->
+<!--  <hr>-->
+
+  <!-- <a id="ssb_suite"><h1>The Semantic Shift Benchmark</h1></a>
+
+  <a href="https://github.com/sgvaze/osr_closed_set_all_you_need/blob/main/README.md#ssb"><h3>Download Here</h3></a>
+  <br>
+
+  <div align="justify">
+    We propose the Semantic Shift Benchmark suite (SSB) for open-set recognition and related tasks
+    (e.g category discovery, out-of-distribution detection etc.).
+    The SSB is intended to isolate semantic novelty from other forms of distributional shifts, and consists of three fine-grained
+    datasets and a large-scale ImageNet benchmark.
+  </div>
+  <br><br>
+  <div align="justify">
+    For each dataset, we provide 'seen' and 'unseen' class splits. Furthermore, for each dataset, the 'unseen'
+    classes are divided into 'Easy' and 'Hard'. Harder examples are more visually and semantically similar to the 'seen' classes.
+  </div>
+
+  <br><br>
+  <div align="justify">
+    Examples are shown below. For Easy and Hard examples, we show 'unseen' classes on the right, and their most similar 'seen' class on the left.
+  </div>
+  <br><br>
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img style="width: 80%;" src="./resources/ssb_cub.jpg"
+             alt="Results figure"/>
+      </div>
+
+      <div class="carousel-item">
+        <img style="width: 80%; " src="./resources/ssb_scars.jpg"
+             alt="Results figure"/>
+      </div>
+
+      <div class="carousel-item">
+        <img style="width: 80%; " src="./resources/ssb_aircraft.jpg"
+             alt="Results figure"/>
+      </div>
+
+      <div class="carousel-item">
+        <img style="width: 80%; " src="./resources/ssb_imagenet.jpg"
+             alt="Results figure"/>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> -->
+
+  <!-- <br><br> -->
+  <!-- <hr> -->
+
+  <h1>Citation</h1>
+  <div class="paper-thumbnail">
+    <a href="https://arxiv.org">
+      <img class="layered-paper-big" width="100%" src="./resources/thumbnail.jpg" alt="Paper thumbnail"/>
+    </a>
+  </div>
+  <div class="paper-info">
+    <br>
+    <h3>GeneCIS: A Benchmark for General Conditional Image Similarity</h3>
+    <p>Sagar Vaze, Nicolas Carion, Ishan Misra</p>
+    <p>In CVPR, 2023.</p>
+    <pre><code>@inproceedings{vaze2023gen,
+        title={GeneCIS: A Benchmark for General Conditional Image Similarity},
+        author={Sagar Vaze and Nicolas Carion and Ishan Misra},
+        booktitle={CVPR},
+        year={2023}
+        }
+  </code></pre>
+  </div>
+
+  <br><br>
+  <hr>
+
+  <h1>Acknowledgements</h1>
+  <p style="width: 80%;">
+    Sagar Vaze is funded by a Facebook AI Research Scholarship.
+    This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful project</a>, and inherits the modifications made by <a href="https://github.com/jasonyzhang/webpage-template">Jason Zhang</a>.
+    The code can be found <a href="https://github.com/elliottwu/webpage-template">here</a>.
+  </p>
+
+  <br><br>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
