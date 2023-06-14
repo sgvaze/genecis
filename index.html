@@ -61,9 +61,11 @@
 
   <br><br>
 
-  <div class="links">[<a href="">ArXiv</a> / <a href="./resources/paper.pdf">PDF</a>]</div>
-  <div class="links"><a href="https://github.com/facebookresearch/genecis">       [Code]</a></div>
-  <div class="links" style="max-width: 270px;"><a href="./resources/poster.pdf">[Poster]</a></div>
+  <div class="link-container">
+    <div class="links">[<a href="">ArXiv</a> / <a href="./resources/paper.pdf">PDF</a>]</div>
+    <div class="links"><a href="https://github.com/facebookresearch/genecis">[Code]</a></div>
+    <div class="links" style="max-width: 270px;"><a href="./resources/poster.pdf">[Poster]</a></div>
+  </div>
 
   <br><br>
 
@@ -96,14 +98,23 @@
     benchmarks. In fact, though evaluated zero-shot, our model
     surpasses state-of-the-art supervised models on MIT-States.
   </div>
+  <hr style="width: 81%; margin: auto">
 
   <br><br><br>
 <!--  <hr>-->
 
+<center><h1>GeneCIS Examples</h1></center>
+  <div style="width: 100%;" align="justify">
+    Our benchmark contains four conditional retrieval tasks.
+    Given a reference image (yellow boxes) and text condition (blue text), the model must select the only conditionally similar image (green boxes) from a curated set of gallery images.
+    The galleries contain hard distractor images (which are similar but not conditionally similar) to the reference image, to prevent shortcut solutions.
+  </div>
 
+<img style="width: 100%;" src="resources/genecis.jpg" alt="Teaser figure."/>
 
 <!--  <br><br>-->
-  <hr style="width: 81%; margin: auto">
+ <hr>
+
 
   <br>
 <!--  <h1>Method Overview</h1>-->

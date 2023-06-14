@@ -36,6 +36,13 @@ body {
     max-width: 450px;
 }
 
+.link-container {
+    display: flex;
+    justify-content: space-around; /* or space-between */
+    width: 70%; /* adjust this to the width you want */
+    margin: 0 auto; /* this will center the container */
+}
+
 .links {
     font-size: 22px;
     width: 95%;
